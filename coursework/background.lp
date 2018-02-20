@@ -1,3 +1,60 @@
+% L = 0
+valid_move(D, T):- rule(0), dest(D), time(T).
+
+% L = 1
+valid_move(D, T):- rule(1), dest(D), time(T), cell(C), agent_at(C, T).
+valid_move(D, T):- rule(2), dest(D), time(T), cell(C), agent_at(C, T).
+
+% L = 2
+valid_move(D, T):- rule(3), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D).
+valid_move(D, T):- rule(4), dest(D), time(T), cell(C), agent_at(C, T), adjacent(C, D).
+valid_move(D, T):- rule(5), dest(D), time(T), cell(C), agent_at(C, T), link(C, D).
+valid_move(D, T):- rule(6), dest(D), time(T), cell(C), agent_at(C, T), unlocked(C, T).
+
+% L = 3
+valid_move(D, T):- rule(7), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D), adjacent(C, D).
+valid_move(D, T):- rule(8), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D), link(C, D).
+valid_move(D, T):- rule(9), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D), unlocked(D, T).
+valid_move(D, T):- rule(10), dest(D), time(T), cell(C), agent_at(C, T), adjacent(C, D), link(C, D).
+valid_move(D, T):- rule(11), dest(D), time(T), cell(C), agent_at(C, T), adjacent(C, D), unlocked(D, T).
+valid_move(D, T):- rule(12), dest(D), time(T), cell(C), agent_at(C, T), link(C, D), unlocked(D, T).
+
+
+% L = 4
+valid_move(D, T):- rule(13), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D), adjacent(C, D), link(C, D).
+valid_move(D, T):- rule(14), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D), adjacent(C, D), unlocked(D, T).
+valid_move(D, T):- rule(15), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D), link(C, D), unlocked(D, T).
+valid_move(D, T):- rule(16), dest(D), time(T), cell(C), agent_at(C, T), adjacent(C, D), link(C, D), unlocked(D, T).
+
+{rule(0..16)}.
+
+#minimize[
+  rule(0)=1,
+  rule(1)=2,
+  rule(2)=2,
+  rule(3)=3,
+  rule(4)=3,
+  rule(5)=3,
+  rule(6)=3,
+  rule(7)=4,
+  rule(8)=4,
+  rule(9)=4,
+  rule(10)=4,
+  rule(11)=4,
+  rule(12)=4,
+  rule(13)=5,
+  rule(14)=5,
+  rule(15)=5,
+  rule(16)=5].
+
+goal:-  valid_move(cell(9, 1), 1),
+        valid_move(cell(9, 10), 8),
+        not valid_move(cell(1, 1), 1),
+        not valid_move(cell(7, 1), 3),
+        not valid_move(cell(4, 7), 12),
+        not valid_move(cell(3, 5), 16).
+:- not goal.
+
 wall(cell(1,2),cell(2,2)).
 wall(cell(1,3),cell(2,3)).
 wall(cell(2,3),cell(2,4)).
