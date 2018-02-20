@@ -23,15 +23,17 @@ player(2).
 %paper(X):- player(X).
 %scissors(X):- player(X).
 
+%0{rock(1), scissors(1), paper(1)}1.
+rock(1).
+scissors(2).
 
 % b.i
 % :- wins(1), paper(1).
 
 
 % b.ii
-% 1{wins(1), paper(1)}1.
+% :- not 1{wins(1), paper(1)}1.
 
 
 % b.iii
-rock(1).
-scissors(2).
+% :- not wins(1).
