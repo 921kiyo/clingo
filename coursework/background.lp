@@ -3,7 +3,7 @@ valid_move(D, T):- rule(0), dest(D), time(T).
 
 % L = 1
 valid_move(D, T):- rule(1), dest(D), time(T), cell(C), agent_at(C, T).
-valid_move(D, T):- rule(2), dest(D), time(T), cell(C), agent_at(C, T).
+valid_move(D, T):- rule(2), dest(D), time(T), unlocked(D, T).
 
 % L = 2
 valid_move(D, T):- rule(3), dest(D), time(T), cell(C), agent_at(C, T), not wall(C, D).
