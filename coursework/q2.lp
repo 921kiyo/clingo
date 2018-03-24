@@ -4,10 +4,12 @@
 % q.
 
 % Question a
-% p.
+p.
 
 % Question b
-:- r.
+% :- r.
+
+% p :- r.
 
 % Question c
 % p :- r.

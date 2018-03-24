@@ -6,7 +6,7 @@ q:- not p.
 %:- not r.
 
 % Brave Induction
-r:- p.
+% r:- p.
 
 % alternative solution for Brave
 % r.

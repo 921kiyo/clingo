@@ -5,6 +5,8 @@ q:- not r.
 
 % Brave but not Cautious
 
+% r:- not q.
+:- q.
 r:- not q.
 
 % 0{r}1.
